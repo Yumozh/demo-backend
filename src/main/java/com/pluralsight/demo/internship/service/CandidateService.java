@@ -1,5 +1,5 @@
 package com.pluralsight.demo.internship.service;
-
+import java.util.stream.Collectors;
 import com.pluralsight.demo.internship.model.Candidate;
 import com.pluralsight.demo.internship.repository.CandidateRepository;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class CandidateService {
         candidateRepository.deleteById(id);
     }
 
-    public List<Candidate> getCandidatesByFieldOfStudy(String fieldOfStudy){
+    public List<Candidate> getCandidatesByFiledOfStudy(String fieldOfStudy) {
         return candidateRepository.findAll().stream()
                 .filter(c -> c.getFieldOfStudy().equalsIgnoreCase(fieldOfStudy))
                 .collect(Collectors.toList());

@@ -23,6 +23,7 @@ public class CandidateController {
     public ResponseEntity<List<Candidate>> getAllCandidates(
             @RequestParam(required = false) String fieldOfStudy) {
         List<Candidate> candidates;
+
         if(fieldOfStudy != null) {
             candidates = candidateService.getCandidatesByFiledOfStudy(fieldOfStudy);
         } else {
