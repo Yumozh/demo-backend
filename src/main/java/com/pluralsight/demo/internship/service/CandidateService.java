@@ -1,11 +1,11 @@
 package com.pluralsight.demo.internship.service;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 import com.pluralsight.demo.internship.model.Candidate;
 import com.pluralsight.demo.internship.repository.CandidateRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CandidateService {
@@ -27,6 +27,7 @@ public class CandidateService {
     }
 
     public Candidate createCandidate(Candidate candidate) {
+        candidate.setRegisteredAt(LocalDateTime.now());
         return candidateRepository.save(candidate);
     }
 
@@ -48,8 +49,9 @@ public class CandidateService {
                 .collect(Collectors.toList());
     }
     public List<Candidate> searchCandidatesByName(String candidateName) {
-        return candidateRepository.findAll().stream()
-                .filter(c -> c.getName().toLowerCase().contains(candidateName.toLowerCase()))
-                .toList();
+//        return candidateRepository.findAll().stream()
+//                .filter(c -> c.getName().toLowerCase().contains(candidateName.toLowerCase()))
+//                .toList();
+        return candidateRepository.findByNameContainingIgnoreCase(candidateName);
     }
 }
