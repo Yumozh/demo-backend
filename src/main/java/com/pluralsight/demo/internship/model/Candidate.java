@@ -36,6 +36,15 @@ public class Candidate {
 
     // Getters and Setters
 
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
     public LocalDateTime getRegisteredAt() {
         return registeredAt;
     }
