@@ -1,6 +1,7 @@
 package com.pluralsight.demo.internship.controller;
 
 import com.pluralsight.demo.internship.model.Candidate;
+import com.pluralsight.demo.internship.model.Internship;
 import com.pluralsight.demo.internship.service.CandidateService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +58,11 @@ public class CandidateController {
     public ResponseEntity<Void> deleteCandidate(@PathVariable Long id) {
         candidateService.deleteCandidate(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search/name/{name}")
+    public ResponseEntity<List<Candidate>> searchByName(@PathVariable String name){
+        List<Candidate> candidates = candidateService.searchCandidatesByName(name);
+        return ResponseEntity.ok(candidates);
     }
 }
